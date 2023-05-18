@@ -8,36 +8,27 @@ const resetButton = document.getElementById('reset');
 
 const wordsWithImages = [
     {
-      word: 'T47_松崎竜雅_サウナが大好き',
+      word: '三田：パラダイス',
       imageUrls: [
-        'img/IMG_7881.JPG',
-        'img/IMG_7881.JPG',
-        'img/IMG_7881.JPG',
-        'img/IMG_7881.JPG',
-        'img/IMG_7881.JPG',
-        'img/IMG_7881.JPG',
+        'img/PARADISE1.jpeg',
+        'img/PARADISE2.jpeg',
+        'img/PARADISE3.jpeg',
       ]
     },
     {
-        word: 'T47_まつざきりゅうが_お酒が大好き',
+        word: '赤坂：サウナ東京',
         imageUrls: [
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
+          'img/saunaTokyo1.jpeg',
+          'img/saunaTokyo2.jpeg',
+          'img/saunaTokyo3.jpeg',
         ]
     },
     {
-        word: 'T47_松崎竜雅です。',
+        word: '新橋：レンブラント',
         imageUrls: [
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
-          'img/IMG_7881.JPG',
+          'img/renburanto1.jpeg',
+          'img/renburanto2.jpeg',
+          'img/renburanto3.jpeg',
         ]
     }
     // 他の単語と画像URLの配列を追加...
@@ -62,7 +53,9 @@ function setNewWord() {
 function displayImages(currentWordObj) {
     const imageSlider = document.querySelector(".image-slider");
     let imageCount = 0;
-    
+
+    clearImages();
+
     currentWordObj.imageUrls.forEach((imageUrl) => {
         const imgElement = document.createElement("img");
         imgElement.src = imageUrl;
@@ -102,7 +95,7 @@ function endGame() {
 
 function resetGame() {
   score = 0;
-  timeRemaining = 30;
+  timeRemaining = 120;
   wordElement.textContent = '';
   inputElement.value = '';
   clearImages();
@@ -115,10 +108,17 @@ function resetGame() {
 }
 
 function clearImages() {
-    const imagecontainer = document.querySelector(".image-container");
-    const imageSlider = document.querySelector(".image-slider");
-    
-    imagecontainer.appendChild(imageSlider);
+  const imageSlider = document.querySelector(".image-slider");
+  while(imageSlider.firstChild){
+    imageSlider.removeChild(imageSlider.firstChild);
+  }
+
+  imageSlider.className = "";
+  window.requestAnimationFrame(function(time) {
+    window.requestAnimationFrame(function(time) {
+      imageSlider.className = "image-slider";
+    });
+  });
 }
 
 inputElement.addEventListener('input', () => {
@@ -139,6 +139,14 @@ startButton.addEventListener('click', () => {
   startButton.disabled = true;
   resetButton.disabled = false;
   scoreElement.textContent = 'スコア: 0';
+
+  const imageSlider = document.querySelector(".image-slider");
+  imageSlider.className = "";
+  window.requestAnimationFrame(function(time) {
+    window.requestAnimationFrame(function(time) {
+      imageSlider.className = "image-slider";
+    });
+  });
 });
 
 resetButton.addEventListener('click', () => {

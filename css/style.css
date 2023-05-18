@@ -6,7 +6,7 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: #07298f;
 }
 
 header {
@@ -30,7 +30,7 @@ header h1 {
 #word {
   font-size: 3rem;
   font-weight: bold;
-  color: #333;
+  color: #ffff;
 }
 
 .word-placeholder {
@@ -39,7 +39,7 @@ header h1 {
 }
 
 .image-container {
-  border: 2px solid #4caf50;
+  border: 2px solid #ffff;
   border-radius: 4px;
   padding: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -92,6 +92,7 @@ header h1 {
   font-size: 1.5rem;
   margin: 1rem 0;
   min-height: 2.5rem;
+  color: #ffff;
 }
 
 #score {
@@ -147,8 +148,8 @@ button:disabled {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     margin: 0.2rem;
     background-color: #eee;
     border: 1px solid #ccc;
@@ -165,3 +166,51 @@ button:disabled {
     box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+
+.steam {
+  position: absolute;
+  bottom: 0;
+  height: 300px;  /* height was increased */
+  width: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50% / 200%;
+  animation: rise 8s infinite, sway 2s infinite; 
+}
+
+@keyframes sway {
+  0%, 100% {
+      transform: translateX(0);
+  }
+  33% {
+      transform: translateX(-10px);
+  }
+  66% {
+      transform: translateX(10px);
+  }
+}
+
+.steam:nth-child(3n-1) {
+  animation: rise 8s infinite, sway 2s -1s infinite;  /* Apply two animations with different delay */
+}
+.steam:nth-child(3n) {
+  animation: rise 8s infinite, sway 2s 0s infinite;  /* Apply two animations with different delay */
+}
+.steam:nth-child(3n+1) {
+  animation: rise 8s infinite, sway 2s 1s infinite;  /* Apply two animations with different delay */
+}
+
+@keyframes rise {
+  0% {
+      bottom: 0;
+      transform: scale(0, 1);
+      opacity: 0.5;
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      bottom: 100%;
+      transform: scale(2, 0);
+      opacity: 0;
+  }
+}
